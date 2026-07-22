@@ -1,0 +1,6 @@
+# This repository publishes a self-contained single-file homepage.
+# Ignore every root entry unless it is explicitly part of the release set.
+/*
+!/.gitignore
+!/README.md
+!/index.html
