@@ -1,11 +1,37 @@
-# This repository publishes a self-contained single-file homepage.
-# Ignore every root entry unless it is explicitly part of the release set.
+# The production Worker publishes the generated Astro site from the repository root.
+# Keep the local source workspace and design artefacts out of the release commit.
 /*
 !/.gitignore
 !/README.md
+!/7e8b66f78fdfcd0488951c74bdbd90ea.txt
 !/index.html
+!/404.html
+!/favicon.svg
+!/og-z-garden.webp
+!/robots.txt
+!/rss.xml
+!/search.js
+!/sitemap-0.xml
+!/sitemap-index.xml
 
-# wrangler files
+!/_astro/
+!/_astro/**
+!/about/
+!/about/**
+!/blog/
+!/blog/**
+!/experiments/
+!/experiments/**
+!/pagefind/
+!/pagefind/**
+!/projects/
+!/projects/**
+!/search/
+!/search/**
+!/tags/
+!/tags/**
+
+# Cloudflare/Wrangler local state
 .wrangler
 .dev.vars*
 !.dev.vars.example

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /experiments/fluid.html
+Sitemap: https://zzk.trunghuy.top/sitemap-index.xml

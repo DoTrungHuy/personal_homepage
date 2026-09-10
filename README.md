@@ -1,33 +1,32 @@
-# Trung Huy Do — Personal Homepage
+# Trung Huy — Personal Digital Garden
 
-单文件个人主页:`index.html` 即整站,无构建、无外部依赖,可直接部署到 GitHub Pages 或任何静态托管。
+东方水墨风格的个人数字花园，展示 Agent 工具、自动化项目、交互视觉与技术文章。
 
-## 技术
+## Production
 
-- **GSAP 3.15 + ScrollTrigger**(已内嵌):入场逐字动画、滚动浮现、数字滚动、技能条联动
-- **自研 WebGL 水系统**(替代原 Three.js 粒子,文件从 750KB 瘦身到 156KB):
-  - 电影开场:泪滴光滴坠入夜色海面 → 涟漪荡开 → 镜头俯转 → 色彩晕染成流体背景(约 4 秒,每会话播一次,可跳过)
-  - 波动方程高度场涟漪模拟(借鉴 evanw/webgl-water、jquery.ripples,MIT)+ Gerstner 涌浪 + bloom/ACES filmic 后期
-  - 常态背景 = **真实流体模拟**(简化 stable fluids,借鉴 PavelDoGreat/WebGL-Fluid-Simulation,MIT):**鼠标划过直接搅动色彩**,颜料被卷成烟雾状漩涡;点击空白处迸出一团品牌色 + 涟漪滴落;染料场持续向品牌配色自愈,不会搅成灰色
-- 降级链:`prefers-reduced-motion` 直接呈现成品静帧;WebGL/浮点纹理不可用回退到 CSS 光斑背景;上下文丢失自动重建;移动端自动降分辨率
-- 测试钩子:URL 加 `?t=秒数` 可冻结开场任意时刻(如 `?t=1.9`)
+- Website: <https://zzk.trunghuy.top>
+- Hosting: Cloudflare Workers
+- Release branch: `main`
+- Output: Astro static HTML, CSS and JavaScript with Pagefind search assets
 
-## 本地预览
+生产站点由 Cloudflare 监听 `main` 分支并发布仓库根目录。根目录内容是经过类型检查、浏览器测试和生产构建后的静态发布产物。
+
+## Experience
+
+- 3.6 秒水墨 Z 开场，支持跳过与菜单重播
+- CSS、SVG、Canvas 与 GSAP 组成的四段程序化背景
+- 五个精选项目在同一视口位置逐张覆盖
+- 深浅主题、触屏、键盘与 `prefers-reduced-motion` 支持
+- 项目详情、搜索索引、RSS 与站点地图
+
+## Release verification
+
+发布前在本地 Astro 工程中执行：
 
 ```powershell
-python -m http.server 5173 --bind 127.0.0.1
+npm run check
+npm run build
+npm test
 ```
 
-打开 <http://127.0.0.1:5173/>。也可以直接双击 `index.html`(全部资源内嵌,file:// 也能正常显示)。
-
-## 内容修改
-
-内容全部在 `index.html` 中:
-
-- 项目卡片:搜索 `Projects` 区块,当前为 Vendor Pulse、PolyPilot 和 X Daily Digest
-- 技能与数字:搜索 `data-pct`(技能百分比)和 `data-count`(统计数字)
-- 联系方式:GitHub 已指向 <https://github.com/DoTrungHuy>
-
-## 仓库范围
-
-远端仓库只保留当前发布所需的 `index.html`、`README.md` 和 `.gitignore`。旧版工程、设计验收素材及本地工具配置仅保留在本机,不纳入提交或部署。
+Cloudflare 构建通过后，再验证首页、`/_astro/` 资源、项目详情和站点地图均能从正式域名访问。
